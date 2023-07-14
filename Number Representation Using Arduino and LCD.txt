@@ -1,0 +1,83 @@
+#include <LiquidCrystal.h>
+// register shift
+int rs=7;
+// enable pin
+int enp=8;
+//four data pins
+int d4=9;
+int d5=10;
+int d6=11;
+int d7=12;
+int mynum;
+String ent_inp="Enter the number";
+LiquidCrystal mylcd(rs,enp,d4,d5,d6,d7);
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  mylcd.begin(16,2);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  Serial.println(ent_inp);
+  while(Serial.available()==0){
+
+  }
+  mylcd.setCursor(0,0);
+  mynum=Serial.parseInt();
+  //power 0
+  int bit0=mynum%2;
+  mynum=mynum/2;
+
+  //power 1
+  int bit1=mynum%2;
+  mynum=mynum/2;
+
+  // power 2
+  int bit2=mynum%2;
+  mynum=mynum/2;
+  
+  //power 3
+  int bit3=mynum%2;
+  mynum=mynum/2;
+  
+  //power 4
+  int bit4=mynum%2;
+  mynum=mynum/2;
+  
+  //power5
+  int bit5=mynum%2;
+  mynum=mynum/2;
+
+  //power 6
+  int bit6=mynum%2;
+  mynum=mynum/2;
+
+  //power 7
+  int bit7=mynum%2;
+  mynum=mynum/2;
+  
+  mylcd.print(bit7);
+  mylcd.setCursor(1,0);
+  
+  mylcd.print(bit6);
+  mylcd.setCursor(2,0);
+  
+  mylcd.print(bit5);
+  mylcd.setCursor(3,0);
+  
+  mylcd.print(bit4);
+  mylcd.setCursor(4,0);
+  
+  mylcd.print(bit3);
+  mylcd.setCursor(5,0);
+  
+  mylcd.print(bit2);
+  mylcd.setCursor(6,0);
+  
+  mylcd.print(bit1);
+  mylcd.setCursor(7,0);
+  
+  mylcd.print(bit0);
+  mylcd.setCursor(8,0);
+}
